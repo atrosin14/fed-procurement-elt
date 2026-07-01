@@ -1,0 +1,7 @@
+fed_procurement_elt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../warehouse.duckdb
+      threads: 4

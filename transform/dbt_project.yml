@@ -1,0 +1,21 @@
+name: fed_procurement_elt
+version: "0.1.0"
+config-version: 2
+
+profile: fed_procurement_elt
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  fed_procurement_elt:
+    bronze:
+      +materialized: view
+    silver:
+      +materialized: view
+    gold:
+      +materialized: table

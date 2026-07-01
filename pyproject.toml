@@ -1,0 +1,12 @@
+[project]
+name = "fed-procurement-elt"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dbt-core>=1.11.12",
+    "dbt-duckdb>=1.10.1",
+    "duckdb>=1.5.4",
+    "requests>=2.34.2",
+]
