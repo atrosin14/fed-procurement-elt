@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fct_award_spend
+    description: "One row per federal contract award."
+    columns:
+      - name: award_internal_id
+        description: "Unique award identifier from USAspending."
+        data_tests:
+          - unique
+          - not_null
+      - name: recipient_key
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_recipient')
+              field: recipient_key
+      - name: agency_key
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_agency')
+              field: agency_key
+      - name: award_amount
+        description: "Award obligation amount (USD)."
+
+  - name: dim_recipient
+    columns:
+      - name: recipient_key
+        data_tests: [unique, not_null]
+      - name: recipient_uei
+        data_tests: [not_null]
+
+  - name: dim_agency
+    columns:
+      - name: agency_key
+        data_tests: [unique, not_null]
