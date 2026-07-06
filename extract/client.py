@@ -9,9 +9,25 @@ CONTRACT_AWARD_TYPES = ["A", "B", "C", "D"]
 
 # Fields requested from API
 FIELDS = [
-    "Award ID", "Recipient Name", "Start Date", "End Date", "Award Amount",
-    "Awarding Agency", "Awarding Sub Agency", "Contract Award Type",
-    "Award Type", "Funding Agency", "Funding Sub Agency"
+    "Award ID",
+    "Recipient Name",
+    "Recipient UEI",
+    "Start Date",
+    "End Date",
+    "Award Amount",
+    "Total Outlays",
+    "Awarding Agency",
+    "Awarding Sub Agency",
+    "Funding Agency",
+    "Funding Sub Agency",
+    "Award Type",
+    "Contract Award Type",
+    "NAICS",
+    "PSC",
+    "Place of Performance State Code",
+    "Place of Performance Country Code",
+    "Last Modified Date",
+    "generated_internal_id",
 ]
 
 # Minimum contract spend to fetch

@@ -5,20 +5,22 @@ import duckdb
 DB_PATH = "warehouse.duckdb"
 
 def load(json_path: str) -> int:
-    """Loads raw data..."""
+    """Loads raw data into duckDB"""
     con = duckdb.connect(DB_PATH)
     con.execute("CREATE SCHEMA IF NOT EXISTS raw;")
 
     # Create the table from the .json files inferred schema, don't populate with rows yet
     con.execute(f"""
             CREATE TABLE IF NOT EXISTS raw.awards AS
-            SELECT * FROM read_json_auto('{json_path}') LIMIT 0;
+            SELECT *, current_timestamp AS _loaded_at 
+            FROM read_json_auto('{json_path}') LIMIT 0;
     """)
 
     # Insert only rows where award ID is not yet present
     con.execute(f"""
         INSERT INTO raw.awards
-        SELECT * FROM read_json_auto('{json_path}') src
+        SELECT *, current_timestamp AS _loaded_at
+        FROM read_json_auto('{json_path}') src
         WHERE src."Award ID" NOT IN (SELECT "Award ID" FROM raw.awards);
     """)
 
